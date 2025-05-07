@@ -1,4 +1,4 @@
-import { VerifierObservations } from '../../../sequelize/entities/VerifierObservations';
+import { VerifierObservations } from '../../../sequelize/models/VerifierObservations';
 
 export class VerifierObservationsService {
   async createObservation(data: any) {

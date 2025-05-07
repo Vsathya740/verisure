@@ -1,4 +1,4 @@
-import { ApplicationRegistration } from '../../../sequelize/entities/ApplicationRegistration';
+import { ApplicationRegistration } from '../../../sequelize/models/ApplicationRegistration';
 
 export class ApplicationRegistrationService {
   async createApplication(data: any) {
@@ -47,3 +47,4 @@ export class ApplicationRegistrationService {
     return { message: 'Application deleted successfully' };
   }
 }
+

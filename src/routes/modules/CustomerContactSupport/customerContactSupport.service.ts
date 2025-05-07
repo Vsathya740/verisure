@@ -1,4 +1,4 @@
-import { CustomerContactReport } from '../../../sequelize/entities/CustomerContactSupport';
+import { CustomerContactReport } from '../../../sequelize/models/CustomerContactReport';
 
 export class CustomerContactSupportService {
   async createContactReport(data: any) {

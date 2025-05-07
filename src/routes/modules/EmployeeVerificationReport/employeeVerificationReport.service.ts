@@ -1,4 +1,4 @@
-import { EmploymentVerificationReport } from '../../../sequelize/entities/VerfirifcationReport';
+import { EmploymentVerificationReport } from '../../../sequelize/models/VerificationReport';
 
 export class EmployeeVerificationReportService {
   async createVerificationReport(data: any) {
