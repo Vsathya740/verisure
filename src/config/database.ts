@@ -45,4 +45,4 @@ const config: DbConfig = {
   }
 };
 
-export default config; 
+export = config; 
