@@ -2,9 +2,14 @@ import { QueryInterface, DataTypes } from 'sequelize';
 
 export async function up(queryInterface: QueryInterface) {
   await queryInterface.createTable('applications', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     applicationId: {
       type: DataTypes.STRING,
-      primaryKey: true,
+      unique: true,
       allowNull: true
     },
     applicant_name: {

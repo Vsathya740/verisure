@@ -8,8 +8,15 @@ import { UserMaster } from './UserMaster';
 })
 export class Application extends BaseModel {
   @Column({
-    type: DataType.STRING,
+    type: DataType.INTEGER,
     primaryKey: true,
+    autoIncrement: true
+  })
+  id!: number;
+
+  @Column({
+    type: DataType.STRING,
+    unique: true,
     allowNull: true
   })
   applicationId!: string;
