@@ -35,6 +35,30 @@ export async function up(queryInterface: QueryInterface) {
       defaultValue: true,
       allowNull: false
     },
+    organisation_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'organisation_master',
+        key: 'id'
+      }
+    },
+    bank_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'bank_master',
+        key: 'id'
+      }
+    },
+    bank_branch_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'bank_branch_master',
+        key: 'id'
+      }
+    },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false
