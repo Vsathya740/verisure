@@ -84,7 +84,7 @@ export class EmployerVerification extends BaseModel {
   })
   accepted_by!: number;
 
-  @BelongsTo(() => Application, 'applicationId')
+  @BelongsTo(() => Application)
   application!: Application;
 
   @BelongsTo(() => UserMaster, 'accepted_by')
