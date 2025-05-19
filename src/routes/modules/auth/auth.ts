@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { UserMaster } from '../../../sequelize/models/UserMaster';
 import bcrypt from 'bcrypt';
+import { AuthService } from '../../../utils/auth';
 
 // Extend Express Request type to include user
 interface AuthRequest extends Request {
@@ -67,6 +68,81 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ message: 'Error during login' });
+  }
+});
+
+// Refresh token endpoint
+router.post('/refresh-token', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { refreshToken } = req.body;
+
+    if (!refreshToken) {
+      res.status(400).json({ message: 'Refresh token is required' });
+      return;
+    }
+
+    try {
+      const payload = AuthService.verifyRefreshToken(refreshToken);
+      const accessToken = AuthService.generateAccessToken(payload);
+
+      res.json({
+        accessToken,
+        user: {
+          userId: payload.userId,
+          email: payload.email
+        }
+      });
+    } catch (error) {
+      res.status(401).json({ message: 'Invalid refresh token' });
+    }
+  } catch (error) {
+    console.error('Refresh token error:', error);
+    res.status(500).json({ message: 'Error refreshing token' });
+  }
+});
+
+// Get new access token endpoint
+router.post('/get-access-token', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { refreshToken } = req.body;
+
+    if (!refreshToken) {
+      res.status(400).json({ message: 'Refresh token is required' });
+      return;
+    }
+
+    try {
+      const payload = AuthService.verifyRefreshToken(refreshToken);
+      const tokens = AuthService.generateTokens(payload);
+
+      // Get user details
+      const user = await UserMaster.findOne({ where: { id: payload.userId } });
+      if (!user) {
+        res.status(404).json({ message: 'User not found' });
+        return;
+      }
+
+      res.json({
+        accessToken: tokens.accessToken,
+        refreshToken: tokens.refreshToken,
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          fullName: user.fullName,
+          role: user.role,
+          isActive: user.isActive,
+          organisation_id: user.organisation_id,
+          bank_id: user.bank_id,
+          bank_branch_id: user.bank_branch_id
+        }
+      });
+    } catch (error) {
+      res.status(401).json({ message: 'Invalid refresh token' });
+    }
+  } catch (error) {
+    console.error('Get access token error:', error);
+    res.status(500).json({ message: 'Error getting access token' });
   }
 });
 

@@ -4,7 +4,8 @@ export async function up(queryInterface: QueryInterface) {
   await queryInterface.createTable('applications', {
     applicationId: {
       type: DataTypes.STRING,
-      primaryKey: true
+      primaryKey: true,
+      allowNull: true
     },
     applicant_name: {
       type: DataTypes.STRING,

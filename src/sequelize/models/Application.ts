@@ -9,7 +9,8 @@ import { UserMaster } from './UserMaster';
 export class Application extends BaseModel {
   @Column({
     type: DataType.STRING,
-    primaryKey: true
+    primaryKey: true,
+    allowNull: true
   })
   applicationId!: string;
 

@@ -72,7 +72,11 @@ export class ApplicationRegistrationService {
       status: 'ACCEPTED',
       accepted_by: userId
     });
-    return application;
+    const data ={
+      "status": true,
+      "data": application
+    }
+    return data;
   }
 
   async completeApplication(id: string, userId: number) {
@@ -86,7 +90,11 @@ export class ApplicationRegistrationService {
     await application.update({
       status: 'COMPLETED'
     });
-    return application;
+    const data ={
+      "status": true,
+      "data": application
+    }
+    return data;
   }
 }
 
