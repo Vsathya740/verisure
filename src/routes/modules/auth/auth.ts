@@ -17,6 +17,12 @@ const router = express.Router();
 router.post('/login', async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body;
+
+    if (!email || !password) {
+      res.status(400).json({ message: 'Email and password are required' });
+      return;
+    }
+
     const user = await UserMaster.findOne({ where: { email } });
 
     if (!user) {
@@ -49,10 +55,15 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
       user: {
         id: user.id,
         email: user.email,
-        name: user.name
+        name: user.name,
+        date_of_birth: user.date_of_birth,
+        organisation_id: user.organisation_id,
+        bank_id: user.bank_id,
+        bank_branch_id: user.bank_branch_id
       }
     });
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({ message: 'Error during login' });
   }
 });
