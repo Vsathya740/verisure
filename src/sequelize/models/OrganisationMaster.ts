@@ -6,12 +6,22 @@ import { BaseModel } from './BaseModel';
   timestamps: true
 })
 export class OrganisationMaster extends BaseModel {
-  @Column(DataType.STRING)
-  organisation_name!: string;
+  @Column({
+    type: DataType.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  })
+  id!: number;
 
-  @Column(DataType.STRING)
-  organisation_code!: string;
+  @Column({
+    type: DataType.STRING,
+    allowNull: false
+  })
+  name!: string;
 
-  @Column(DataType.BOOLEAN)
-  status!: boolean;
+  @Column({
+    type: DataType.STRING,
+    allowNull: false
+  })
+  code!: string;
 } 

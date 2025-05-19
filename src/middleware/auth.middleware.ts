@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { AuthService } from '../utils/auth';
+import jwt from 'jsonwebtoken';
 
 export interface AuthRequest extends Request {
   user?: {
@@ -8,19 +8,20 @@ export interface AuthRequest extends Request {
   };
 }
 
-export const authenticateToken = (req: AuthRequest, res: Response, next: NextFunction) => {
+export const authenticateToken = (req: AuthRequest, res: Response, next: NextFunction): void => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
   if (!token) {
-    return res.status(401).json({ message: 'Access token is required' });
+    res.status(401).json({ message: 'Access denied. No token provided.' });
+    return;
   }
 
   try {
-    const payload = AuthService.verifyAccessToken(token);
-    req.user = payload;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { userId: number; email: string };
+    req.user = decoded;
     next();
   } catch (error) {
-    return res.status(403).json({ message: 'Invalid access token' });
+    res.status(403).json({ message: 'Invalid token.' });
   }
 }; 

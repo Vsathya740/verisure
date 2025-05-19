@@ -11,13 +11,16 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use('/api', routes);
 
-sequelize.sync({ alter: true }).then(() => {
-  console.log('### MySQL connected successfully! ###');
-  app.listen(port, () => {
-    console.log('\n########################################');
-    console.log(`## Server is running on port ${port} ##`);
-    console.log('########################################\n');
+// Only authenticate, don't sync
+sequelize.authenticate()
+  .then(() => {
+    console.log('### MySQL connected successfully! ###');
+    app.listen(port, () => {
+      console.log('\n########################################');
+      console.log(`## Server is running on port ${port} ##`);
+      console.log('########################################\n');
+    });
+  })
+  .catch((err: Error) => {
+    console.error('Unable to connect to the MySQL database:', err);
   });
-}).catch((err: Error) => {
-  console.error('Unable to connect to the database:', err);
-});

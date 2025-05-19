@@ -1,17 +1,48 @@
-import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
+import { Dialect } from 'sequelize';
 
 dotenv.config();
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME || 'verisure',
-  process.env.DB_USER || 'root',
-  process.env.DB_PASSWORD || 'IhmOhm@93',
-  {
-    host: process.env.DB_HOST,
+interface Config {
+  username: string;
+  password: string;
+  database: string;
+  host: string;
+  dialect: Dialect;
+  logging: boolean;
+}
+
+interface DbConfig {
+  development: Config;
+  test: Config;
+  production: Config;
+}
+
+const config: DbConfig = {
+  development: {
+    username: process.env.DB_USER || 'root',
+    password: process.env.DB_PASS || 'password',
+    database: process.env.DB_NAME || 'verisure',
+    host: process.env.DB_HOST || 'localhost',
+    dialect: 'mysql',
+    logging: false
+  },
+  test: {
+    username: process.env.DB_USER || 'root',
+    password: process.env.DB_PASS || 'password',
+    database: process.env.DB_NAME || 'verisure_test',
+    host: process.env.DB_HOST || 'localhost',
+    dialect: 'mysql',
+    logging: false
+  },
+  production: {
+    username: process.env.DB_USER || '',
+    password: process.env.DB_PASS || '',
+    database: process.env.DB_NAME || '',
+    host: process.env.DB_HOST || '',
     dialect: 'mysql',
     logging: false
   }
-);
+};
 
-export default sequelize; 
+export default config; 

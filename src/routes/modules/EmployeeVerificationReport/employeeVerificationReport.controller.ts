@@ -25,22 +25,18 @@ router.post('/', validateVerificationData, async (req: Request, res: Response): 
   }
 });
 
-router.get('/', async (req: Request, res: Response): Promise<void> => {
+router.get('/', async (_: Request, res: Response): Promise<void> => {
   try {
-    const data = await verificationService.getVerificationReports();
-    res.status(200).json(data);
-  } catch (err: any) {
-    res.status(400).json({ error: err.message });
+    const reports = await verificationService.getVerificationReports();
+    res.json(reports);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching verification reports' });
   }
 });
 
 router.get('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
-    const id = Number(req.params.id);
-    if (isNaN(id)) {
-      res.status(400).json({ error: 'Invalid ID format' });
-      return;
-    }
+    const id = req.params.id;
     const data = await verificationService.getVerificationReportById(id);
     res.status(200).json(data);
   } catch (err: any) {
@@ -50,11 +46,7 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
 
 router.put('/:id', validateVerificationData, async (req: Request, res: Response): Promise<void> => {
   try {
-    const id = Number(req.params.id);
-    if (isNaN(id)) {
-      res.status(400).json({ error: 'Invalid ID format' });
-      return;
-    }
+    const id = req.params.id;
     const data = await verificationService.updateVerificationReport(id, req.body);
     res.status(200).json(data);
   } catch (err: any) {
@@ -64,11 +56,7 @@ router.put('/:id', validateVerificationData, async (req: Request, res: Response)
 
 router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
-    const id = Number(req.params.id);
-    if (isNaN(id)) {
-      res.status(400).json({ error: 'Invalid ID format' });
-      return;
-    }
+    const id = req.params.id;
     const data = await verificationService.deleteVerificationReport(id);
     res.status(200).json(data);
   } catch (err: any) {

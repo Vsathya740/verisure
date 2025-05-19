@@ -1,8 +1,6 @@
 import express, { Request, Response } from 'express';
-import { ApplicationRegistrationService } from './applicationRegistration.service';
-import { authenticateToken } from '../auth/auth';
+import { ApplicationRegistrationService } from './ApplicationRegistration/applicationRegistration.service';
 
-// Extend Express Request type to include user
 interface AuthenticatedRequest extends Request {
   user?: {
     id: number;
@@ -12,22 +10,10 @@ interface AuthenticatedRequest extends Request {
 const router = express.Router();
 const applicationService = new ApplicationRegistrationService();
 
-// Validation middleware
-const validateApplicationData = (req: Request, res: Response, next: Function): void => {
-  const { applicant_name, dob, bank_branch, phone_number, email_id } = req.body;
-
-  if (!applicant_name || !dob || !bank_branch || !phone_number || !email_id) {
-    res.status(400).json({ error: 'All fields are required' });
-    return;
-  }
-  next();
-};
-
-// Get all applications (filtered by status)
-router.get('/', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+// Get all applications
+router.get('/', async (_req: Request, res: Response): Promise<void> => {
   try {
-    const userId = req.user?.id;
-    const applications = await applicationService.getApplications(userId);
+    const applications = await applicationService.getApplications();
     res.json(applications);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching applications' });
@@ -38,15 +24,15 @@ router.get('/', async (req: AuthenticatedRequest, res: Response): Promise<void> 
 router.get('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const id = req.params.id;
-    const data = await applicationService.getApplicationById(id);
-    res.status(200).json(data);
+    const application = await applicationService.getApplicationById(id);
+    res.status(200).json(application);
   } catch (err: any) {
     res.status(400).json({ error: err.message });
   }
 });
 
 // Create new application
-router.post('/', validateApplicationData, async (req: Request, res: Response): Promise<void> => {
+router.post('/', async (req: Request, res: Response): Promise<void> => {
   try {
     const data = await applicationService.createApplication(req.body);
     res.status(201).json(data);
@@ -56,7 +42,7 @@ router.post('/', validateApplicationData, async (req: Request, res: Response): P
 });
 
 // Update application
-router.put('/:id', validateApplicationData, async (req: Request, res: Response): Promise<void> => {
+router.put('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const id = req.params.id;
     const data = await applicationService.updateApplication(id, req.body);
@@ -78,7 +64,7 @@ router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
 });
 
 // Accept application
-router.post('/:id/accept', authenticateToken, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+router.post('/:id/accept', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const id = req.params.id;
     const userId = req.user?.id;
@@ -94,7 +80,7 @@ router.post('/:id/accept', authenticateToken, async (req: AuthenticatedRequest, 
 });
 
 // Complete application
-router.post('/:id/complete', authenticateToken, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+router.post('/:id/complete', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const id = req.params.id;
     const userId = req.user?.id;
@@ -109,4 +95,4 @@ router.post('/:id/complete', authenticateToken, async (req: AuthenticatedRequest
   }
 });
 
-export default router;
+export default router; 
