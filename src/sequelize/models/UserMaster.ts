@@ -12,49 +12,63 @@ import { BankBranchMaster } from './BankBranchMaster';
 })
 export class UserMaster extends BaseModel {
   @Column({
-    type: DataType.STRING(100),
-    allowNull: true,
+    type: DataType.STRING,
+    allowNull: false,
+    unique: true
   })
-  name!: string;
+  username!: string;
 
   @Column({
-    type: DataType.STRING(100),
-    allowNull: true,
-    unique: true,
+    type: DataType.STRING,
+    allowNull: false
+  })
+  password!: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+    unique: true
   })
   email!: string;
 
   @Column({
-    type: DataType.DATEONLY,
-    allowNull: true,
-    defaultValue: null
+    type: DataType.STRING,
+    allowNull: false
   })
-  date_of_birth!: Date | null;
+  fullName!: string;
 
   @Column({
-    type: DataType.STRING(255),
-    allowNull: true,
+    type: DataType.ENUM('ADMIN', 'USER'),
+    defaultValue: 'USER',
+    allowNull: false
   })
-  password!: string;
+  role!: string;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: true,
+    allowNull: false
+  })
+  isActive!: boolean;
 
   @ForeignKey(() => OrganisationMaster)
   @Column({
     type: DataType.INTEGER,
-    allowNull: true,
+    allowNull: true
   })
   organisation_id!: number;
 
   @ForeignKey(() => BankMaster)
   @Column({
     type: DataType.INTEGER,
-    allowNull: true,
+    allowNull: true
   })
   bank_id!: number;
 
   @ForeignKey(() => BankBranchMaster)
   @Column({
     type: DataType.INTEGER,
-    allowNull: true,
+    allowNull: true
   })
   bank_branch_id!: number;
 

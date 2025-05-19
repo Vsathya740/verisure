@@ -54,9 +54,11 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
       refreshToken,
       user: {
         id: user.id,
+        username: user.username,
         email: user.email,
-        name: user.name,
-        date_of_birth: user.date_of_birth,
+        fullName: user.fullName,
+        role: user.role,
+        isActive: user.isActive,
         organisation_id: user.organisation_id,
         bank_id: user.bank_id,
         bank_branch_id: user.bank_branch_id
