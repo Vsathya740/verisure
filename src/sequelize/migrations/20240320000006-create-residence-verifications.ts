@@ -3,15 +3,16 @@ import { QueryInterface, DataTypes } from 'sequelize';
 export async function up(queryInterface: QueryInterface) {
   await queryInterface.createTable('residence_verifications', {
     verificationId: {
-      type: DataTypes.STRING,
-      primaryKey: true
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
     },
     applicationId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'applications',
-        key: 'applicationId'
+        key: 'id'
       }
     },
     residence_address: {
