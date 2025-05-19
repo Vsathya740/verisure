@@ -7,11 +7,6 @@ export async function up(queryInterface: QueryInterface) {
       primaryKey: true,
       autoIncrement: true
     },
-    applicationId: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      defaultValue: null
-    },
     applicant_name: {
       type: DataTypes.STRING,
       allowNull: false
