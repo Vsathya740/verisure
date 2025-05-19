@@ -9,8 +9,8 @@ export async function up(queryInterface: QueryInterface) {
     },
     applicationId: {
       type: DataTypes.STRING,
-      unique: true,
-      allowNull: true
+      allowNull: true,
+      defaultValue: null
     },
     applicant_name: {
       type: DataTypes.STRING,
