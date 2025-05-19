@@ -17,7 +17,8 @@ export class Application extends BaseModel {
   @Column({
     type: DataType.STRING,
     unique: true,
-    allowNull: true
+    allowNull: true,
+    defaultValue: null
   })
   applicationId!: string;
 
