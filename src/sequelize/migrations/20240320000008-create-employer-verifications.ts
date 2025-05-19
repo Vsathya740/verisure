@@ -7,7 +7,7 @@ export async function up(queryInterface: QueryInterface) {
       primaryKey: true,
       autoIncrement: true
     },
-    applicationId: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {

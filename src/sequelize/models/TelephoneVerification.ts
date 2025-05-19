@@ -20,7 +20,7 @@ export class TelephoneVerification extends BaseModel {
     type: DataType.INTEGER,
     allowNull: false
   })
-  applicationId!: number;
+  id!: number;
 
   @Column({
     type: DataType.STRING,
