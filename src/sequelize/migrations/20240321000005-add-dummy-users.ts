@@ -13,9 +13,7 @@ export = {
         password: hashedPassword,
         full_name: 'John Manager',
         role: 'ADMIN',
-        is_active: true,
-        created_at: new Date(),
-        updated_at: new Date()
+        is_active: true
       },
       {
         username: 'sarah.manager',
@@ -23,9 +21,7 @@ export = {
         password: hashedPassword,
         full_name: 'Sarah Manager',
         role: 'ADMIN',
-        is_active: true,
-        created_at: new Date(),
-        updated_at: new Date()
+        is_active: true
       },
       // Agents
       {
@@ -34,9 +30,7 @@ export = {
         password: hashedPassword,
         full_name: 'Mike Agent',
         role: 'USER',
-        is_active: true,
-        created_at: new Date(),
-        updated_at: new Date()
+        is_active: true
       },
       {
         username: 'lisa.agent',
@@ -44,9 +38,7 @@ export = {
         password: hashedPassword,
         full_name: 'Lisa Agent',
         role: 'USER',
-        is_active: true,
-        created_at: new Date(),
-        updated_at: new Date()
+        is_active: true
       },
       {
         username: 'david.agent',
@@ -54,9 +46,7 @@ export = {
         password: hashedPassword,
         full_name: 'David Agent',
         role: 'USER',
-        is_active: true,
-        created_at: new Date(),
-        updated_at: new Date()
+        is_active: true
       },
       {
         username: 'emma.agent',
@@ -64,9 +54,7 @@ export = {
         password: hashedPassword,
         full_name: 'Emma Agent',
         role: 'USER',
-        is_active: true,
-        created_at: new Date(),
-        updated_at: new Date()
+        is_active: true
       },
       {
         username: 'james.agent',
@@ -74,9 +62,7 @@ export = {
         password: hashedPassword,
         full_name: 'James Agent',
         role: 'USER',
-        is_active: true,
-        created_at: new Date(),
-        updated_at: new Date()
+        is_active: true
       },
       {
         username: 'sophie.agent',
@@ -84,9 +70,7 @@ export = {
         password: hashedPassword,
         full_name: 'Sophie Agent',
         role: 'USER',
-        is_active: true,
-        created_at: new Date(),
-        updated_at: new Date()
+        is_active: true
       },
       {
         username: 'tom.agent',
@@ -94,9 +78,7 @@ export = {
         password: hashedPassword,
         full_name: 'Tom Agent',
         role: 'USER',
-        is_active: true,
-        created_at: new Date(),
-        updated_at: new Date()
+        is_active: true
       },
       {
         username: 'anna.agent',
@@ -104,9 +86,7 @@ export = {
         password: hashedPassword,
         full_name: 'Anna Agent',
         role: 'USER',
-        is_active: true,
-        created_at: new Date(),
-        updated_at: new Date()
+        is_active: true
       }
     ];
 
