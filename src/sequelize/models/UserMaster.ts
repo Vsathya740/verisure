@@ -6,9 +6,7 @@ import { BankBranchMaster } from './BankBranchMaster';
 
 @Table({
   tableName: 'user_master',
-  timestamps: true,
-  createdAt: true,
-  updatedAt: true
+  timestamps: true
 })
 export class UserMaster extends BaseModel {
   @Column({
@@ -33,7 +31,8 @@ export class UserMaster extends BaseModel {
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: false,
+    field: 'fullName'
   })
   fullName!: string;
 
@@ -47,30 +46,34 @@ export class UserMaster extends BaseModel {
   @Column({
     type: DataType.BOOLEAN,
     defaultValue: true,
-    allowNull: false
+    allowNull: false,
+    field: 'isActive'
   })
   isActive!: boolean;
 
   @ForeignKey(() => OrganisationMaster)
   @Column({
     type: DataType.INTEGER,
-    allowNull: true
+    allowNull: true,
+    field: 'organisation_id'
   })
-  organisation_id!: number;
+  organisationId!: number;
 
   @ForeignKey(() => BankMaster)
   @Column({
     type: DataType.INTEGER,
-    allowNull: true
+    allowNull: true,
+    field: 'bank_id'
   })
-  bank_id!: number;
+  bankId!: number;
 
   @ForeignKey(() => BankBranchMaster)
   @Column({
     type: DataType.INTEGER,
-    allowNull: true
+    allowNull: true,
+    field: 'bank_branch_id'
   })
-  bank_branch_id!: number;
+  bankBranchId!: number;
 
   @BelongsTo(() => OrganisationMaster)
   organisation!: OrganisationMaster;
@@ -79,5 +82,5 @@ export class UserMaster extends BaseModel {
   bank!: BankMaster;
 
   @BelongsTo(() => BankBranchMaster)
-  bank_branch!: BankBranchMaster;
+  bankBranch!: BankBranchMaster;
 } 
