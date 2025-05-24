@@ -5,7 +5,7 @@ dotenv.config();
 
 interface Config {
   username: string;
-  IhmOhm@93: string;
+  password: string;
   database: string;
   host: string;
   dialect: Dialect;
@@ -37,7 +37,7 @@ const config: DbConfig = {
   },
   production: {
     username: process.env.DB_USER || '',
-    IhmOhm@93: process.env.DB_PASS || '',
+    password: process.env.DB_PASS || '',
     database: process.env.DB_NAME || '',
     host: process.env.DB_HOST || '',
     dialect: 'mysql',
