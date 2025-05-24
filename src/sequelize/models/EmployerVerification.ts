@@ -18,9 +18,10 @@ export class EmployerVerification extends BaseModel {
   @ForeignKey(() => Application)
   @Column({
     type: DataType.INTEGER,
-    allowNull: false
+    allowNull: false,
+    field: 'id'
   })
-  id!: number;
+  applicationId!: number;
 
   @Column({
     type: DataType.STRING,

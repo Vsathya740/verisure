@@ -4,7 +4,9 @@ import { UserMaster } from './UserMaster';
 
 @Table({
   tableName: 'applications',
-  timestamps: true
+  timestamps: true,
+  underscored: false,
+  modelName: 'Application'
 })
 export class Application extends BaseModel {
   @Column({
@@ -13,14 +15,6 @@ export class Application extends BaseModel {
     autoIncrement: true
   })
   id!: number;
-
-  @Column({
-    type: DataType.STRING,
-    unique: true,
-    allowNull: true,
-    defaultValue: null
-  })
-  applicationId!: string;
 
   @Column({
     type: DataType.STRING,

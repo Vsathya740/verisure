@@ -5,7 +5,7 @@ dotenv.config();
 
 interface Config {
   username: string;
-  password: string;
+  IhmOhm@93: string;
   database: string;
   host: string;
   dialect: Dialect;
@@ -21,7 +21,7 @@ interface DbConfig {
 const config: DbConfig = {
   development: {
     username: process.env.DB_USER || 'root',
-    password: process.env.DB_PASS || 'IhmOhm@93',
+    IhmOhm@93: process.env.DB_PASS || 'IhmOhm@93',
     database: process.env.DB_NAME || 'verisure',
     host: process.env.DB_HOST || 'localhost',
     dialect: 'mysql',
@@ -29,7 +29,7 @@ const config: DbConfig = {
   },
   test: {
     username: process.env.DB_USER || 'root',
-    password: process.env.DB_PASS || 'IhmOhm@93',
+    IhmOhm@93: process.env.DB_PASS || 'IhmOhm@93',
     database: process.env.DB_NAME || 'verisure_test',
     host: process.env.DB_HOST || 'localhost',
     dialect: 'mysql',
@@ -37,7 +37,7 @@ const config: DbConfig = {
   },
   production: {
     username: process.env.DB_USER || '',
-    password: process.env.DB_PASS || '',
+    IhmOhm@93: process.env.DB_PASS || '',
     database: process.env.DB_NAME || '',
     host: process.env.DB_HOST || '',
     dialect: 'mysql',

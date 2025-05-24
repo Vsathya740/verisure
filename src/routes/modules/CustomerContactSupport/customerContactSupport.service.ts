@@ -1,10 +1,11 @@
-import { Application } from '../../../sequelize/models/Application';
+import { CustomerContactReport } from '../../../sequelize/models/CustomerContactReport';
 import { UserMaster } from '../../../sequelize/models/UserMaster';
+import { Application } from '../../../sequelize/models/Application';
 
 export class CustomerContactSupportService {
   async createContactReport(data: any) {
     // Business logic for creating contact report
-    const report = await Application.create(data);
+    const report = await CustomerContactReport.create(data);
     return report;
   }
 
@@ -12,16 +13,17 @@ export class CustomerContactSupportService {
     const where: any = {};
     
     if (userId) {
-      where.accepted_by = userId;
-      where.status = ['ACCEPTED', 'COMPLETED'];
+      where.created_by = userId;
+      where.status = ['IN_PROGRESS', 'COMPLETED'];
     } else {
       where.status = 'OPEN';
     }
 
-    const reports = await Application.findAll({
+    const reports = await CustomerContactReport.findAll({
       where,
       include: [
-        { model: UserMaster, as: 'acceptedBy' }
+        { model: UserMaster, as: 'creator' },
+        { model: Application, as: 'application' }
       ]
     });
     return reports;
@@ -29,9 +31,10 @@ export class CustomerContactSupportService {
 
   async getContactReportById(id: string) {
     // Business logic for getting contact report by ID
-    const report = await Application.findByPk(id, {
+    const report = await CustomerContactReport.findByPk(id, {
       include: [
-        { model: UserMaster, as: 'acceptedBy' }
+        { model: UserMaster, as: 'creator' },
+        { model: Application, as: 'application' }
       ]
     });
     if (!report) {
@@ -42,7 +45,7 @@ export class CustomerContactSupportService {
 
   async updateContactReport(id: string, data: any) {
     // Business logic for updating contact report
-    const report = await Application.findByPk(id);
+    const report = await CustomerContactReport.findByPk(id);
     if (!report) {
       throw new Error('Contact report not found');
     }
@@ -52,7 +55,7 @@ export class CustomerContactSupportService {
 
   async deleteContactReport(id: string) {
     // Business logic for deleting contact report
-    const report = await Application.findByPk(id);
+    const report = await CustomerContactReport.findByPk(id);
     if (!report) {
       throw new Error('Contact report not found');
     }
@@ -60,32 +63,12 @@ export class CustomerContactSupportService {
     return { message: 'Contact report deleted successfully' };
   }
 
-  async acceptContactReport(id: string, userId: number) {
-    const report = await Application.findByPk(id);
+  async updateStatus(id: string, status: 'OPEN' | 'IN_PROGRESS' | 'COMPLETED') {
+    const report = await CustomerContactReport.findByPk(id);
     if (!report) {
       throw new Error('Contact report not found');
     }
-    if (report.status !== 'OPEN') {
-      throw new Error('Report is not in OPEN status');
-    }
-    await report.update({
-      status: 'ACCEPTED',
-      accepted_by: userId
-    });
-    return report;
-  }
-
-  async completeContactReport(id: string, userId: number) {
-    const report = await Application.findByPk(id);
-    if (!report) {
-      throw new Error('Contact report not found');
-    }
-    if (report.status !== 'ACCEPTED' || report.accepted_by !== userId) {
-      throw new Error('Report is not accepted by you');
-    }
-    await report.update({
-      status: 'COMPLETED'
-    });
+    await report.update({ status });
     return report;
   }
 }

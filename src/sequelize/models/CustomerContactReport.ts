@@ -4,66 +4,73 @@ import { UserMaster } from './UserMaster';
 import { Application } from './Application';
 
 @Table({
-  tableName: 'telephone_verifications',
+  tableName: 'customer_contact_reports',
   timestamps: true
 })
-export class TelephoneVerification extends BaseModel {
+export class CustomerContactReport extends BaseModel {
   @Column({
     type: DataType.INTEGER,
     primaryKey: true,
     autoIncrement: true
   })
-  verificationId!: number;
+  id!: number;
 
   @ForeignKey(() => Application)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
-    field: 'id'
+    field: 'application_id'
   })
   applicationId!: number;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.DATE,
     allowNull: false
   })
-  phone_number!: string;
+  contact_date!: Date;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.ENUM('PHONE', 'EMAIL', 'IN_PERSON'),
     allowNull: false
   })
-  person_contacted!: string;
+  contact_type!: 'PHONE' | 'EMAIL' | 'IN_PERSON';
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     allowNull: false
   })
-  relation_with_applicant!: string;
+  contact_details!: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     allowNull: false
   })
-  verification_remarks!: string;
+  outcome!: string;
 
   @Column({
-    type: DataType.ENUM('OPEN', 'ACCEPTED', 'COMPLETED'),
+    type: DataType.DATE,
+    allowNull: true
+  })
+  next_follow_up_date!: Date;
+
+  @Column({
+    type: DataType.ENUM('OPEN', 'IN_PROGRESS', 'COMPLETED'),
     defaultValue: 'OPEN',
     allowNull: false
   })
-  status!: 'OPEN' | 'ACCEPTED' | 'COMPLETED';
+  status!: 'OPEN' | 'IN_PROGRESS' | 'COMPLETED';
 
   @ForeignKey(() => UserMaster)
   @Column({
     type: DataType.INTEGER,
-    allowNull: true
+    allowNull: false,
+    field: 'created_by'
   })
-  accepted_by!: number;
+  createdBy!: number;
 
   @BelongsTo(() => Application)
   application!: Application;
 
-  @BelongsTo(() => UserMaster, 'accepted_by')
-  acceptedBy!: UserMaster;
+  @BelongsTo(() => UserMaster, 'created_by')
+  creator!: UserMaster;
 } 
