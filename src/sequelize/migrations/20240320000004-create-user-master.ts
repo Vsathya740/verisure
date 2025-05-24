@@ -21,7 +21,7 @@ export async function up(queryInterface: QueryInterface) {
       allowNull: false,
       unique: true
     },
-    fullName: {
+    full_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -30,7 +30,7 @@ export async function up(queryInterface: QueryInterface) {
       defaultValue: 'USER',
       allowNull: false
     },
-    isActive: {
+    is_active: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
       allowNull: false
@@ -58,14 +58,6 @@ export async function up(queryInterface: QueryInterface) {
         model: 'bank_branch_master',
         key: 'id'
       }
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: false
     }
   });
 }

@@ -32,7 +32,7 @@ export class UserMaster extends BaseModel {
   @Column({
     type: DataType.STRING,
     allowNull: false,
-    field: 'fullName'
+    field: 'full_name'
   })
   fullName!: string;
 
@@ -47,7 +47,7 @@ export class UserMaster extends BaseModel {
     type: DataType.BOOLEAN,
     defaultValue: true,
     allowNull: false,
-    field: 'isActive'
+    field: 'is_active'
   })
   isActive!: boolean;
 
