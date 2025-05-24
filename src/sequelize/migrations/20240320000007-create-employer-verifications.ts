@@ -2,12 +2,12 @@ import { QueryInterface, DataTypes } from 'sequelize';
 
 export async function up(queryInterface: QueryInterface) {
   await queryInterface.createTable('employer_verifications', {
-    verificationId: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    id: {
+    application_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
@@ -20,7 +20,7 @@ export async function up(queryInterface: QueryInterface) {
       allowNull: true
     },
     employer_coordinates: {
-      type: DataTypes.JSON,
+      type: DataTypes.TEXT,
       allowNull: true
     },
     employer_address: {
@@ -64,11 +64,11 @@ export async function up(queryInterface: QueryInterface) {
         key: 'id'
       }
     },
-    createdAt: {
+    created_at: {
       type: DataTypes.DATE,
       allowNull: true
     },
-    updatedAt: {
+    updated_at: {
       type: DataTypes.DATE,
       allowNull: true
     }

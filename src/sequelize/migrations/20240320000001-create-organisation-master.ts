@@ -14,14 +14,6 @@ export async function up(queryInterface: QueryInterface) {
     code: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: false
     }
   });
 }

@@ -2,42 +2,46 @@ import { QueryInterface, DataTypes } from 'sequelize';
 
 export async function up(queryInterface: QueryInterface) {
   await queryInterface.createTable('residence_verifications', {
-    verificationId: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    id: {
+    application_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'applications',
         key: 'id'
       }
     },
+    residence_coordinates: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
     residence_address: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     permanent_address: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     years_at_residence: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     address_confirmed_by: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     residents_count: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     residence_status: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     approx_rent: {
       type: DataTypes.DECIMAL(10, 2),
@@ -50,7 +54,7 @@ export async function up(queryInterface: QueryInterface) {
     status: {
       type: DataTypes.ENUM('OPEN', 'ACCEPTED', 'COMPLETED'),
       defaultValue: 'OPEN',
-      allowNull: false
+      allowNull: true
     },
     accepted_by: {
       type: DataTypes.INTEGER,
@@ -60,13 +64,13 @@ export async function up(queryInterface: QueryInterface) {
         key: 'id'
       }
     },
-    createdAt: {
+    created_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     },
-    updatedAt: {
+    updated_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     }
   });
 }

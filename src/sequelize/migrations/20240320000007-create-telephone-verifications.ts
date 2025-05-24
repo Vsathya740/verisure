@@ -2,14 +2,14 @@ import { QueryInterface, DataTypes } from 'sequelize';
 
 export async function up(queryInterface: QueryInterface) {
   await queryInterface.createTable('telephone_verifications', {
-    verificationId: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    id: {
+    application_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'applications',
         key: 'id'
@@ -17,24 +17,24 @@ export async function up(queryInterface: QueryInterface) {
     },
     phone_number: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     person_contacted: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     relation_with_applicant: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     verification_remarks: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     status: {
       type: DataTypes.ENUM('OPEN', 'ACCEPTED', 'COMPLETED'),
       defaultValue: 'OPEN',
-      allowNull: false
+      allowNull: true
     },
     accepted_by: {
       type: DataTypes.INTEGER,
@@ -44,13 +44,15 @@ export async function up(queryInterface: QueryInterface) {
         key: 'id'
       }
     },
-    createdAt: {
+    created_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
+      defaultValue: DataTypes.NOW
     },
-    updatedAt: {
+    updated_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
+      defaultValue: DataTypes.NOW
     }
   });
 }

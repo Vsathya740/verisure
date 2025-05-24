@@ -53,14 +53,6 @@ module.exports = {
       is_active: {
         type: DataTypes.BOOLEAN,
         defaultValue: true
-      },
-      createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: false
       }
     });
 

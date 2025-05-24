@@ -5,7 +5,8 @@ import { Application } from './Application';
 
 @Table({
   tableName: 'residence_verifications',
-  timestamps: true
+  timestamps: true,
+  underscored: true
 })
 export class ResidenceVerification extends BaseModel {
   @Column({
@@ -13,49 +14,62 @@ export class ResidenceVerification extends BaseModel {
     primaryKey: true,
     autoIncrement: true
   })
-  verificationId!: number;
+  id!: number;
 
   @ForeignKey(() => Application)
   @Column({
     type: DataType.INTEGER,
-    allowNull: false,
-    field: 'id'
+    allowNull: true,
+    field: 'application_id'
   })
   applicationId!: number;
 
   @Column({
+    type: DataType.TEXT,
+    allowNull: true,
+    get() {
+      const value = this.getDataValue('residence_coordinates');
+      return value ? JSON.parse(value) : null;
+    },
+    set(value: any) {
+      this.setDataValue('residence_coordinates', value ? JSON.stringify(value) : null);
+    }
+  })
+  residence_coordinates!: any;
+
+  @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: true
   })
   residence_address!: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: true
   })
   permanent_address!: string;
 
   @Column({
     type: DataType.INTEGER,
-    allowNull: false
+    allowNull: true
   })
   years_at_residence!: number;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: true
   })
   address_confirmed_by!: string;
 
   @Column({
     type: DataType.INTEGER,
-    allowNull: false
+    allowNull: true
   })
   residents_count!: number;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: true
   })
   residence_status!: string;
 
@@ -74,7 +88,7 @@ export class ResidenceVerification extends BaseModel {
   @Column({
     type: DataType.ENUM('OPEN', 'ACCEPTED', 'COMPLETED'),
     defaultValue: 'OPEN',
-    allowNull: false
+    allowNull: true
   })
   status!: 'OPEN' | 'ACCEPTED' | 'COMPLETED';
 

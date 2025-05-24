@@ -1,11 +1,58 @@
+import { ResidenceVerification } from '../../../sequelize/models/ResidenceVerification';
 import { Application } from '../../../sequelize/models/Application';
 import { UserMaster } from '../../../sequelize/models/UserMaster';
+import { EmployerVerification } from '../../../sequelize/models/EmployerVerification';
+import { TelephoneVerification } from '../../../sequelize/models/TelephoneVerification';
+
 
 export class ApplicationRegistrationService {
   async createApplication(data: any) {
-    // Business logic for creating application
+    console.log(data);
+    try{
     const application = await Application.create(data);
-    return application;
+    const residence_verification = await ResidenceVerification.create({
+      applicationId: application.id,
+      residence_coordinates: data.residence_verification.coordinates,
+      residence_address: data.residence_verification.address,
+      residence_status: data.residence_verification.residence_verification_status
+    });
+    const employer_verification = await EmployerVerification.create({
+      applicationId: application.id,
+      employer_coordinates: data.employer_verification.coordinates,
+      employer_address: data.employer_verification.address,
+      status: data.employer_verification.employer_verification_status
+    });
+    const telephonic_verification = await TelephoneVerification.create({
+      applicationId: application.id,
+      status: data.telephonic_verification.telephonic_verification_status
+    });
+    const response = {
+      "status": true,
+      "data": {
+        "application": application,
+        "residence_verification": {
+          "coordinates": residence_verification.residence_coordinates,
+          "address": residence_verification.residence_address,
+          "residence_verification_status": residence_verification.status
+        },
+        "employer_verification": {
+          "coordinates": employer_verification.employer_coordinates,
+          "address": employer_verification.employer_address,
+          "employer_verification_status": employer_verification.status
+        },
+        "telephonic_verification": {
+          "telephonic_verification_status": telephonic_verification.status
+        }
+      }
+    }
+    return response;
+  } catch (error) {
+    console.log(error);
+    return {
+      "status": false,
+      "message": "Error in creating application"
+    }
+  }
   }
 
   async getApplications(userId?: number) {

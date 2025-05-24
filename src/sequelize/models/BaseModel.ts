@@ -3,9 +3,9 @@ import { Table } from 'sequelize-typescript';
 
 @Table({
   timestamps: true,
-  underscored: false
+  underscored: true
 })
 export class BaseModel extends Model {
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  public readonly created_at!: Date;
+  public readonly updated_at!: Date;
 } 

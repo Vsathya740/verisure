@@ -3,20 +3,38 @@ import { BaseModel } from './BaseModel';
 import { OrganisationMaster } from './OrganisationMaster';
 
 @Table({
-  tableName: 'bank_master',
-  timestamps: true
+  tableName: 'bank_master'
 })
 export class BankMaster extends BaseModel {
-  @Column(DataType.STRING)
-  bank_name!: string;
+  @Column({
+    type: DataType.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  })
+  id!: number;
 
-  @Column(DataType.STRING)
-  bank_code!: string;
+  @Column({
+    type: DataType.STRING,
+    allowNull: false
+  })
+  name!: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false
+  })
+  code!: string;
 
   @ForeignKey(() => OrganisationMaster)
-  @Column(DataType.INTEGER)
-  org_id!: number;
+  @Column({
+    type: DataType.INTEGER,
+    field: 'org_id'
+  })
+  orgId!: number;
 
-  @Column(DataType.BOOLEAN)
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: true
+  })
   status!: boolean;
 } 

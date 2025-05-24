@@ -9,28 +9,28 @@ export async function up(queryInterface: QueryInterface) {
     },
     applicant_name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     dob: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     },
     bank_branch: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     phone_number: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     email_id: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     status: {
       type: DataTypes.ENUM('OPEN', 'ACCEPTED', 'COMPLETED'),
       defaultValue: 'OPEN',
-      allowNull: false
+      allowNull: true
     },
     accepted_by: {
       type: DataTypes.INTEGER,
@@ -40,13 +40,13 @@ export async function up(queryInterface: QueryInterface) {
         key: 'id'
       }
     },
-    createdAt: {
+    created_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     },
-    updatedAt: {
+    updated_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     }
   });
 }

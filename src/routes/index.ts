@@ -12,6 +12,7 @@ router.get('/', (_, res) => {
   res.json({ message: 'Welcome to the API' });
 });
 
+// Health check route
 // Public routes
 router.use('/auth', authRoutes);
 router.use('/applications', applicationRoutes);

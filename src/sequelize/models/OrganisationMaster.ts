@@ -2,8 +2,7 @@ import { Table, Column, DataType } from 'sequelize-typescript';
 import { BaseModel } from './BaseModel';
 
 @Table({
-  tableName: 'organisation_master',
-  timestamps: true
+  tableName: 'organisation_master'
 })
 export class OrganisationMaster extends BaseModel {
   @Column({

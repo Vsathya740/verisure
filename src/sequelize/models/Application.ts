@@ -5,7 +5,7 @@ import { UserMaster } from './UserMaster';
 @Table({
   tableName: 'applications',
   timestamps: true,
-  underscored: false,
+  underscored: true,
   modelName: 'Application'
 })
 export class Application extends BaseModel {
@@ -18,38 +18,38 @@ export class Application extends BaseModel {
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: true
   })
   applicant_name!: string;
 
   @Column({
     type: DataType.DATE,
-    allowNull: false
+    allowNull: true
   })
   dob!: Date;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: true
   })
   bank_branch!: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: true
   })
   phone_number!: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: true
   })
   email_id!: string;
 
   @Column({
     type: DataType.ENUM('OPEN', 'ACCEPTED', 'COMPLETED'),
     defaultValue: 'OPEN',
-    allowNull: false
+    allowNull: true
   })
   status!: 'OPEN' | 'ACCEPTED' | 'COMPLETED';
 

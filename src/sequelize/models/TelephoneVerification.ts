@@ -13,44 +13,44 @@ export class TelephoneVerification extends BaseModel {
     primaryKey: true,
     autoIncrement: true
   })
-  verificationId!: number;
+  id!: number;
 
   @ForeignKey(() => Application)
   @Column({
     type: DataType.INTEGER,
-    allowNull: false,
-    field: 'id'
+    allowNull: true,
+    field: 'application_id'
   })
-  applicationId!: number;
+  applicationID!: number;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: true
   })
   phone_number!: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: true
   })
   person_contacted!: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: true
   })
   relation_with_applicant!: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: true
   })
   verification_remarks!: string;
 
   @Column({
     type: DataType.ENUM('OPEN', 'ACCEPTED', 'COMPLETED'),
     defaultValue: 'OPEN',
-    allowNull: false
+    allowNull: true
   })
   status!: 'OPEN' | 'ACCEPTED' | 'COMPLETED';
 
