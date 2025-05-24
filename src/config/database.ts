@@ -21,7 +21,7 @@ interface DbConfig {
 const config: DbConfig = {
   development: {
     username: process.env.DB_USER || 'root',
-    IhmOhm@93: process.env.DB_PASS || 'IhmOhm@93',
+    password: process.env.DB_PASS || 'IhmOhm@93',
     database: process.env.DB_NAME || 'verisure',
     host: process.env.DB_HOST || 'localhost',
     dialect: 'mysql',
@@ -29,7 +29,7 @@ const config: DbConfig = {
   },
   test: {
     username: process.env.DB_USER || 'root',
-    IhmOhm@93: process.env.DB_PASS || 'IhmOhm@93',
+    password: process.env.DB_PASS || 'IhmOhm@93',
     database: process.env.DB_NAME || 'verisure_test',
     host: process.env.DB_HOST || 'localhost',
     dialect: 'mysql',
