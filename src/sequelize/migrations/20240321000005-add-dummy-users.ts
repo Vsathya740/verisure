@@ -11,102 +11,102 @@ export = {
         username: 'john.manager',
         email: 'john.manager@verisure.com',
         password: hashedPassword,
-        fullName: 'John Manager',
+        full_name: 'John Manager',
         role: 'ADMIN',
-        isActive: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        is_active: true,
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         username: 'sarah.manager',
         email: 'sarah.manager@verisure.com',
         password: hashedPassword,
-        fullName: 'Sarah Manager',
+        full_name: 'Sarah Manager',
         role: 'ADMIN',
-        isActive: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        is_active: true,
+        created_at: new Date(),
+        updated_at: new Date()
       },
       // Agents
       {
         username: 'mike.agent',
         email: 'mike.agent@verisure.com',
         password: hashedPassword,
-        fullName: 'Mike Agent',
+        full_name: 'Mike Agent',
         role: 'USER',
-        isActive: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        is_active: true,
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         username: 'lisa.agent',
         email: 'lisa.agent@verisure.com',
         password: hashedPassword,
-        fullName: 'Lisa Agent',
+        full_name: 'Lisa Agent',
         role: 'USER',
-        isActive: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        is_active: true,
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         username: 'david.agent',
         email: 'david.agent@verisure.com',
         password: hashedPassword,
-        fullName: 'David Agent',
+        full_name: 'David Agent',
         role: 'USER',
-        isActive: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        is_active: true,
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         username: 'emma.agent',
         email: 'emma.agent@verisure.com',
         password: hashedPassword,
-        fullName: 'Emma Agent',
+        full_name: 'Emma Agent',
         role: 'USER',
-        isActive: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        is_active: true,
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         username: 'james.agent',
         email: 'james.agent@verisure.com',
         password: hashedPassword,
-        fullName: 'James Agent',
+        full_name: 'James Agent',
         role: 'USER',
-        isActive: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        is_active: true,
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         username: 'sophie.agent',
         email: 'sophie.agent@verisure.com',
         password: hashedPassword,
-        fullName: 'Sophie Agent',
+        full_name: 'Sophie Agent',
         role: 'USER',
-        isActive: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        is_active: true,
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         username: 'tom.agent',
         email: 'tom.agent@verisure.com',
         password: hashedPassword,
-        fullName: 'Tom Agent',
+        full_name: 'Tom Agent',
         role: 'USER',
-        isActive: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        is_active: true,
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         username: 'anna.agent',
         email: 'anna.agent@verisure.com',
         password: hashedPassword,
-        fullName: 'Anna Agent',
+        full_name: 'Anna Agent',
         role: 'USER',
-        isActive: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        is_active: true,
+        created_at: new Date(),
+        updated_at: new Date()
       }
     ];
 
