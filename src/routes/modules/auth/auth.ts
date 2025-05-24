@@ -60,9 +60,9 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
         fullName: user.fullName,
         role: user.role,
         isActive: user.isActive,
-        organisation_id: user.organisation_id,
-        bank_id: user.bank_id,
-        bank_branch_id: user.bank_branch_id
+        organisationId: user.organisationId,
+        bankId: user.bankId,
+        bankBranchId: user.bankBranchId
       }
     });
   } catch (error) {
@@ -132,9 +132,9 @@ router.post('/get-access-token', async (req: Request, res: Response): Promise<vo
           fullName: user.fullName,
           role: user.role,
           isActive: user.isActive,
-          organisation_id: user.organisation_id,
-          bank_id: user.bank_id,
-          bank_branch_id: user.bank_branch_id
+          organisationId: user.organisationId,
+          bankId: user.bankId,
+          bankBranchId: user.bankBranchId
         }
       });
     } catch (error) {
