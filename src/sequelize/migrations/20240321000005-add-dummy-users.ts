@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 export = {
   up: async (queryInterface: QueryInterface) => {
     const hashedPassword = await bcrypt.hash('password123', 10);
+    const now = new Date();
     
     const users = [
       // Managers
@@ -13,7 +14,9 @@ export = {
         password: hashedPassword,
         full_name: 'John Manager',
         role: 'ADMIN',
-        is_active: true
+        is_active: true,
+        created_at: now,
+        updated_at: now
       },
       {
         username: 'sarah.manager',
@@ -21,7 +24,9 @@ export = {
         password: hashedPassword,
         full_name: 'Sarah Manager',
         role: 'ADMIN',
-        is_active: true
+        is_active: true,
+        created_at: now,
+        updated_at: now
       },
       // Agents
       {
@@ -30,7 +35,9 @@ export = {
         password: hashedPassword,
         full_name: 'Mike Agent',
         role: 'USER',
-        is_active: true
+        is_active: true,
+        created_at: now,
+        updated_at: now
       },
       {
         username: 'lisa.agent',
@@ -38,7 +45,9 @@ export = {
         password: hashedPassword,
         full_name: 'Lisa Agent',
         role: 'USER',
-        is_active: true
+        is_active: true,
+        created_at: now,
+        updated_at: now
       },
       {
         username: 'david.agent',
@@ -46,7 +55,9 @@ export = {
         password: hashedPassword,
         full_name: 'David Agent',
         role: 'USER',
-        is_active: true
+        is_active: true,
+        created_at: now,
+        updated_at: now
       },
       {
         username: 'emma.agent',
@@ -54,7 +65,9 @@ export = {
         password: hashedPassword,
         full_name: 'Emma Agent',
         role: 'USER',
-        is_active: true
+        is_active: true,
+        created_at: now,
+        updated_at: now
       },
       {
         username: 'james.agent',
@@ -62,7 +75,9 @@ export = {
         password: hashedPassword,
         full_name: 'James Agent',
         role: 'USER',
-        is_active: true
+        is_active: true,
+        created_at: now,
+        updated_at: now
       },
       {
         username: 'sophie.agent',
@@ -70,7 +85,9 @@ export = {
         password: hashedPassword,
         full_name: 'Sophie Agent',
         role: 'USER',
-        is_active: true
+        is_active: true,
+        created_at: now,
+        updated_at: now
       },
       {
         username: 'tom.agent',
@@ -78,7 +95,9 @@ export = {
         password: hashedPassword,
         full_name: 'Tom Agent',
         role: 'USER',
-        is_active: true
+        is_active: true,
+        created_at: now,
+        updated_at: now
       },
       {
         username: 'anna.agent',
@@ -86,7 +105,9 @@ export = {
         password: hashedPassword,
         full_name: 'Anna Agent',
         role: 'USER',
-        is_active: true
+        is_active: true,
+        created_at: now,
+        updated_at: now
       }
     ];
 
